@@ -1,0 +1,33 @@
+{
+  "name": "strapi-plugin-unit-test",
+  "version": "0.0.1",
+  "description": "This is the description of the plugin.",
+  "strapi": {
+    "name": "strapi-plugin-unit-test",
+    "icon": "plug",
+    "description": "Description of my-plugin plugin."
+  },
+  "dependencies": {
+    "fs-extra": "^9.1.0",
+    "jest": "^26.1.0",
+    "sqlite3": "latest",
+    "supertest": "^4.0.2"
+  },
+  "author": {
+    "name": "A Strapi developer",
+    "email": "antoine.stc25@gmail.com",
+    "url": "https://github.com/Antoine-lb"
+  },
+  "maintainers": [
+    {
+      "name": "A Strapi developer",
+      "email": "antoine.stc25@gmail.com",
+      "url": "https://github.com/Antoine-lb"
+    }
+  ],
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
