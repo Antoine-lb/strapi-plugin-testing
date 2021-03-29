@@ -1,4 +1,7 @@
 const request = require("supertest");
+const { setupStrapi } = require("strapi-plugin-unit-test");
+
+setupStrapi();
 
 // user mock data
 const mockUserData = {
@@ -65,7 +68,6 @@ it("should return users data for authenticated user", async (done) => {
       expect(data.body.id).toBe(user.id);
       expect(data.body.username).toBe(user.username);
       expect(data.body.email).toBe(user.email);
-      expect(data.body.rests).toStrictEqual([]);
     });
 
   done();

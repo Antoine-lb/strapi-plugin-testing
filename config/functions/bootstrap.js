@@ -3,7 +3,7 @@ const fs = require("fs-extra");
 
 const testFolderPath = process.env.PWD + "/__tests__";
 const pluginFolderPath =
-  process.env.PWD + "/node_modules/strapi-plugin-my-plugin";
+  process.env.PWD + "/node_modules/strapi-plugin-unit-test";
 
 function log(str) {
   console.log("🧪 [strapi-plugin-unit-testing]: " + str);
@@ -14,7 +14,7 @@ function log_err(str) {
 }
 
 module.exports = async () => {
-  log("Checking if /__tests__ folder exists");
+  // log("Checking if /__tests__ folder exists");
 
   fs.pathExists(testFolderPath, (err, exists) => {
     if (err) {
@@ -37,7 +37,7 @@ module.exports = async () => {
         }
       );
     } else {
-      log("/__tests__ already exists, ignoring file creation step");
+      // log("/__tests__ already exists, ignoring file creation step");
     }
   });
 };
