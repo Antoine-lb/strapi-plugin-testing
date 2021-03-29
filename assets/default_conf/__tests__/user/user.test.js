@@ -1,5 +1,5 @@
 const request = require("supertest");
-const { setupStrapi } = require("strapi-plugin-unit-test");
+const { setupStrapi } = require("strapi-plugin-testing");
 
 setupStrapi();
 

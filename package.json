@@ -1,11 +1,11 @@
 {
-  "name": "strapi-plugin-unit-test",
-  "version": "0.0.1",
-  "description": "This is the description of the plugin.",
+  "name": "strapi-plugin-testing",
+  "version": "0.0.4",
+  "description": "Out-of-the-box automated testing for Strapi",
   "strapi": {
-    "name": "strapi-plugin-unit-test",
+    "name": "strapi-plugin-testing",
     "icon": "plug",
-    "description": "Description of my-plugin plugin."
+    "description": "Out-of-the-box automated testing for Strapi"
   },
   "dependencies": {
     "fs-extra": "^9.1.0",
@@ -13,21 +13,31 @@
     "sqlite3": "latest",
     "supertest": "^4.0.2"
   },
-  "author": {
-    "name": "A Strapi developer",
-    "email": "antoine.stc25@gmail.com",
-    "url": "https://github.com/Antoine-lb"
-  },
+  "author": "Antoine-lb <antoine.stc25@gmail.com> (https://github.com/Antoine-lb)",
   "maintainers": [
-    {
-      "name": "A Strapi developer",
-      "email": "antoine.stc25@gmail.com",
-      "url": "https://github.com/Antoine-lb"
-    }
+    "Antoine-lb <antoine.stc25@gmail.com> (https://github.com/Antoine-lb)"
   ],
   "engines": {
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antoine-lb/strapi-plugin-testing.git"
+  },
+  "keywords": [
+    "Strapi",
+    "UT",
+    "Unit-Testing",
+    "Integration-Testing"
+  ],
+  "bugs": {
+    "url": "https://github.com/Antoine-lb/strapi-plugin-testing/issues"
+  },
+  "homepage": "https://github.com/Antoine-lb/strapi-plugin-testing#readme"
 }
