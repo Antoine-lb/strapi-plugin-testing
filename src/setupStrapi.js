@@ -77,8 +77,7 @@ async function setupStrapi() {
     //delete test database after all tests
     if (dbSettings && dbSettings.filename) {
       await putOriginalDB();
-
-      const tmpDbFile = `${__dirname}/../../${dbSettings.filename}`; // THIS WILL HAVE TO CHANGE
+      const tmpDbFile = `${process.env.PWD}/${dbSettings.filename}`; // THIS WILL HAVE TO CHANGE
       if (fs.existsSync(tmpDbFile)) {
         fs.unlinkSync(tmpDbFile);
       }

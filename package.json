@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-testing",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Out-of-the-box automated testing for Strapi",
   "strapi": {
     "name": "strapi-plugin-testing",
