@@ -1,7 +1,7 @@
 # Testing plugin for Strapi
 This community plugin automates all the steps in the [unit test page of the documentation](https://strapi.io/documentation/developer-docs/latest/guides/unit-testing.html).
 
-It will also automatically replaces the `database.js` when the tests are running so the production/develop database config does not need to be shared with testing databse config.
+It will also automatically replaces the `database.js` when the tests are running so the production/develop database config does not need to be shared with testing database config.
 
 ## Installation
 
