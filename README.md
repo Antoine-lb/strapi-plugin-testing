@@ -1,4 +1,4 @@
-# Un-official testing plugin for Strapi (POC)
+# Un-official testing plugin for Strapi
 
 ## Installation
 
