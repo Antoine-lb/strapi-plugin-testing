@@ -37,21 +37,9 @@ const initStrapiPluginTesting = async (strapiInstance = undefined) => {
     }
   }
 
-  // check if production database is in right place
-  let tmp_db_exists;
-  try {
-    tmp_db_exists = await fs.pathExists(originalDBfilePath_tmp);
-  } catch (err) {
-    console.error(err);
-  }
-  if (tmp_db_exists) {
-    log("database_original.js exists, it will replace database.js");
-    await putOriginalDB();
-  }
-
   // if (strapiInstance) {
   //   createEndpoints(strapiInstance);
   // }
 };
 
-module.exports = { initStrapiPluginTesting };
+module.exports = { initStrapiPluginTesting, log, log_err };

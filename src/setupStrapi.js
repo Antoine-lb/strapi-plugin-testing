@@ -1,6 +1,7 @@
 const Strapi = require("strapi");
 const http = require("http");
 const fs = require("fs-extra");
+const { log } = require("./initStrapiPluginTesting");
 
 const {
   testDBfilePath,
@@ -46,6 +47,18 @@ async function putOriginalDB() {
 
 async function startStrapi() {
   if (!instance) {
+    // check if production database is in right place
+    let tmp_db_exists;
+    try {
+      tmp_db_exists = await fs.pathExists(originalDBfilePath_tmp);
+    } catch (err) {
+      console.error(err);
+    }
+    if (tmp_db_exists) {
+      log("database_original.js exists, it will replace database.js");
+      await putOriginalDB();
+    }
+
     await putTestDB();
 
     /** the following code in copied from `./node_modules/strapi/lib/Strapi.js` */
@@ -77,7 +90,7 @@ async function setupStrapi() {
     //delete test database after all tests
     if (dbSettings && dbSettings.filename) {
       await putOriginalDB();
-      const tmpDbFile = `${process.env.PWD}/${dbSettings.filename}`; // THIS WILL HAVE TO CHANGE
+      const tmpDbFile = `${process.env.PWD}/${dbSettings.filename}`;
       if (fs.existsSync(tmpDbFile)) {
         fs.unlinkSync(tmpDbFile);
       }
