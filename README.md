@@ -1,5 +1,7 @@
 # Un-official testing plugin for Strapi
-This plugin automates all the steps in the [unit test page of the documentation](https://strapi.io/documentation/developer-docs/latest/guides/unit-testing.html), and it automatically replaces the `database.js` when the tests are running so the production/develop database config does not need to be shared with testing databse config.
+This plugin automates all the steps in the [unit test page of the documentation](https://strapi.io/documentation/developer-docs/latest/guides/unit-testing.html).
+
+It will also automatically replaces the `database.js` when the tests are running so the production/develop database config does not need to be shared with testing databse config.
 
 ## Installation
 
@@ -28,6 +30,9 @@ Inside of `/__tests__/__config__/` are all the files realted to configuration.
 
 - `/__config__/database.js` will be the database used for the tests
 - `/__config__/jest.config.js` is the jest configuration
+
+## Trouble shooting
+- Delete `.tmp` folder and try again. If that fixes the issue maybe the database is not being deleted properly or is not running the proper database configuration.
 
 ## Exmaples
 
