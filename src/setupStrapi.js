@@ -87,4 +87,4 @@ async function setupStrapi() {
   });
 }
 
-module.exports = { setupStrapi };
+module.exports = { setupStrapi, putOriginalDB };
