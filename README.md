@@ -23,4 +23,4 @@ To avoid re-creating a new Strapi instance for every test, a `.js` file can be m
 
 ## How to mock
 
-Check [this gist](https://github.com/Antoine-lb/strapi-plugin-testing)
+Check [this gist](https://gist.github.com/Antoine-lb/d5c104ef4a2e8835a59186f826255d60)
