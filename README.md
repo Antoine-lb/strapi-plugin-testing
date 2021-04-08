@@ -43,11 +43,31 @@ jest.config.js // jest config
 
 ```
 
+## More Configuration
+
+Test watch so any time tests will re-run
+
+```
+    "testwatch": "NODE_ENV=test jest --watchAll --forceExit --detectOpenHandles",
+```
+
+## Trouble shooting
+
+- Delete `.tmp` folder and try again. If that fixes the issue maybe the database is not being deleted properly or is not running the proper database configuration.
+
+## Examples
+
+Check [this gist](https://gist.github.com/Antoine-lb/d5c104ef4a2e8835a59186f826255d60)
+
 ## Helper Functions
 
 ### startStrapiJest
 
-- `startStrapiJest([callback])`: Starts a new Strapi instance before every test (with singleton pattern) and makes the instance globally available with the variable name `strapi`. The optional callback will be called at the end with the new Strapi instance.
+`startStrapiJest([callback])`
+
+Starts a new Strapi instance before every test (with singleton pattern) and deletes the database and the end of every test. The Strapi instance will be globally available under the variable name `strapi`. The optional callback will be called at the end with the new Strapi instance.
+
+[Check startStrapiJest code.](https://github.com/Antoine-lb/strapi-plugin-testing/blob/main/src/startStrapiJest.js)
 
 Examples:
 
@@ -71,25 +91,3 @@ describe("Global setup", () => {
   });
 });
 ```
-
-## More Configuration
-
-Test watch so any time tests will re-run
-
-```
-    "testwatch": "NODE_ENV=test jest --watchAll --forceExit --detectOpenHandles",
-```
-
-Mock data: by not running tests in the test environment, all the mocked data done in the tests will be stored in the actual database (don't run in production). Which can make onboarding easier.
-
-```
-    "mock": "jest --forceExit --detectOpenHandles",
-```
-
-## Trouble shooting
-
-- Delete `.tmp` folder and try again. If that fixes the issue maybe the database is not being deleted properly or is not running the proper database configuration.
-
-## Examples
-
-Check [this gist](https://gist.github.com/Antoine-lb/d5c104ef4a2e8835a59186f826255d60)
