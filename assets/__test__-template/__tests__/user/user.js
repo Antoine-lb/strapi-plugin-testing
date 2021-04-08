@@ -1,7 +1,4 @@
 const request = require("supertest");
-const { setupStrapi } = require("strapi-plugin-testing");
-
-setupStrapi();
 
 // user mock data
 const mockUserData = {

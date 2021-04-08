@@ -1,6 +1,6 @@
-const { setupStrapi } = require("strapi-plugin-testing");
+const { startStrapiJest } = require("strapi-plugin-testing");
 
-setupStrapi();
+startStrapiJest();
 
 describe("Global setup", () => {
   it("strapi is defined", async (done) => {
