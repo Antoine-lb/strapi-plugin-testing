@@ -43,7 +43,7 @@ const checkIfExistsAndCopy = async (
 const initStrapiPluginTesting = async (strapiInstance = undefined) => {
   await checkIfExistsAndCopy(
     testFolderPath,
-    pluginFolderPath + "/assets/__test__-template",
+    pluginFolderPath + "/assets/__tests__-template",
     process.env.PWD
   );
 

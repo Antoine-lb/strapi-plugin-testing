@@ -2,20 +2,32 @@
 
 This community plugin automates all the steps in the [unit test page of the documentation](https://strapi.io/documentation/developer-docs/latest/guides/unit-testing.html) by creating all the default files needed.
 
+> Compatible with Strapi ^3.5.4
+
 ## Installation
 
 1. Install dependecy:
 
-```
+```bash
 yarn add strapi-plugin-testing
 ```
 
-2. To generate all the necesary files lunch Strapi by running `yarn develop`, and check if `__tests__` folder has been created
+2. Run the project to generate all the files needed(check if `__tests__` folder has been created after running)
+
+```bash
+yarn develop
+```
 
 3. Add test command in `package.json`:
 
-```
+```json
 "test": "jest --forceExit --detectOpenHandles",
+```
+
+4. Run the tests
+
+```bash
+yarn test
 ```
 
 ## How to use
@@ -24,22 +36,20 @@ yarn add strapi-plugin-testing
 
 To avoid re-creating a new Strapi instance for every test, `.js` files can be manually added to a `.test.js` file with `require(...)`. In this case they will share the same instance and database.
 
-Warning: If multiple tests share the same instace, the order at which the tests run can have an impact on the result.
+Warning: If multiple tests share the same instance, the order at which the tests run can have an impact on the result.
 
 ## File Structure
 
 ```cpp
 /__tests__/
-  /user/
-    user.js // sample tests to check authentication
-  index.test.js // is a .test.js so it creates it's own environment
+  index.test.js
 
 /config/
   /env/
     /test/
       database.js // database config used in tests
 
-jest.config.js // jest config
+jest.config.js
 
 ```
 
@@ -66,6 +76,8 @@ Test watch so any time a file changes, tests will re-run
 `startStrapi([callback])`
 
 Starts a new Strapi instance and returns it. Build with singleton pattern so it can be called multiple times without re-creating a new strapi instance.
+
+Will pass the new Strapi instance as a parameter to the callback.
 
 [Check startStrapi's code for more details](https://github.com/Antoine-lb/strapi-plugin-testing/blob/main/src/startStrapi.js)
 
