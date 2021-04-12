@@ -15,7 +15,7 @@ yarn add strapi-plugin-testing
 3. Add test command in `package.json`:
 
 ```
-"test": "NODE_ENV=test jest --forceExit --detectOpenHandles",
+"test": "jest --forceExit --detectOpenHandles",
 ```
 
 ## How to use
@@ -45,21 +45,29 @@ jest.config.js // jest config
 
 ## More Configuration
 
-Test watch so any time tests will re-run
+Test watch so any time a file changes, tests will re-run
 
 ```
-    "testwatch": "NODE_ENV=test jest --watchAll --forceExit --detectOpenHandles",
+    "testwatch": "jest --watchAll --forceExit --detectOpenHandles",
 ```
 
 ## Trouble shooting
 
 - Delete `.tmp` folder and try again. If that fixes the issue maybe the database is not being deleted properly or is not running the proper database configuration.
 
-## Examples
+- May not work properly in Windows machines ([check offitial doc for more information](https://strapi.io/documentation/developer-docs/latest/guides/unit-testing.html))
 
-Check [this gist](https://gist.github.com/Antoine-lb/d5c104ef4a2e8835a59186f826255d60)
+- Feel free to create an issue in this repo
 
 ## Helper Functions
+
+### startStrapi
+
+`startStrapi([callback])`
+
+Starts a new Strapi instance and returns it. Build with singleton pattern so it can be called multiple times without re-creating a new strapi instance.
+
+[Check startStrapi's code for more details](https://github.com/Antoine-lb/strapi-plugin-testing/blob/main/src/startStrapi.js)
 
 ### startStrapiJest
 
@@ -67,7 +75,7 @@ Check [this gist](https://gist.github.com/Antoine-lb/d5c104ef4a2e8835a59186f8262
 
 Starts a new Strapi instance before every test (with singleton pattern) and deletes the database and the end of every test. The Strapi instance will be globally available under the variable name `strapi`. The optional callback will be called at the end with the new Strapi instance.
 
-[Check startStrapiJest code.](https://github.com/Antoine-lb/strapi-plugin-testing/blob/main/src/startStrapiJest.js)
+[Check startStrapiJest's code for more details](https://github.com/Antoine-lb/strapi-plugin-testing/blob/main/src/startStrapiJest.js)
 
 Examples:
 
@@ -81,7 +89,7 @@ function populateDatabase(strapiInstance) {
 
 // creates instance and populates data
 startStrapiJest(async (strapiInstance) => {
-  await mockApplicationData(strapiInstance);
+  await mockApplicationData(strapiInstance); // optional parameter
 });
 
 describe("Global setup", () => {
