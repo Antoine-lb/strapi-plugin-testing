@@ -1,46 +1,54 @@
 const createStrapiSuperAdmin = async (
+  strapiInstance,
   email = "admin@test.test",
-  password = "test"
+  password = "test",
+  username = "test",
+  firstname = "test",
+  lastname = "test",
+  blocked = false,
+  isActive = true,
+  displayLogs = true // print success logs
 ) => {
   const params = {
-    username: "test",
+    username,
     password,
-    firstname: "test",
-    lastname: "test",
+    firstname,
+    lastname,
     email,
-    blocked: false,
-    isActive: true,
+    blocked,
+    isActive,
   };
-  //Check if any account exists.
-  const admins = await strapi.query("user", "admin").find();
-
-  if (admins.length === 0) {
-    let verifyRole = await strapi
-      .query("role", "admin")
-      .findOne({ code: "strapi-super-admin" });
-    if (!verifyRole) {
-      verifyRole = await strapi.query("role", "admin").create({
-        name: "Super Admin",
-        code: "strapi-super-admin",
-        description:
-          "Super Admins can access and manage all features and settings.",
-      });
+  let verifyRole = await strapiInstance
+    .query("role", "admin")
+    .findOne({ code: "strapi-super-admin" });
+  if (!verifyRole) {
+    verifyRole = await strapiInstance.query("role", "admin").create({
+      name: "Super Admin",
+      code: "strapi-super-admin",
+      description:
+        "Super Admins can access and manage all features and settings.",
+    });
+  }
+  params.roles = [verifyRole.id];
+  let tmp_pass = params.password;
+  params.password = await strapiInstance.admin.services.auth.hashPassword(
+    params.password
+  );
+  try {
+    await strapiInstance.query("user", "admin").create({
+      ...params,
+    });
+    if (displayLogs) {
+      strapiInstance.log.info("Admin account was successfully created.");
+      strapiInstance.log.info(`Email: ${params.email}`);
+      strapiInstance.log.info(`Password: ${tmp_pass}`);
     }
-    params.roles = [verifyRole.id];
-    params.password = await strapi.admin.services.auth.hashPassword(
-      params.password
+  } catch (error) {
+    strapiInstance.log.error(
+      `Couldn't create Admin account during bootstrap: `,
+      error
     );
-    try {
-      await strapi.query("user", "admin").create({
-        ...params,
-      });
-    } catch (error) {
-      strapi.log.error(
-        `Couldn't create Admin account during bootstrap: `,
-        error
-      );
-      console.error(`Couldn't create Admin account during bootstrap: `, error);
-    }
+    console.error(`Couldn't create Admin account during bootstrap: `, error);
   }
 };
 

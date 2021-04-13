@@ -73,7 +73,9 @@ Test watch so any time a file changes, tests will re-run
 
 ### startStrapi
 
-`startStrapi([callback])`
+```txt
+async startStrapi([callback])
+```
 
 Starts a new Strapi instance and returns it. Build with singleton pattern so it can be called multiple times without re-creating a new strapi instance.
 
@@ -83,7 +85,9 @@ Will pass the new Strapi instance as a parameter to the callback.
 
 ### startStrapiJest
 
-`startStrapiJest([callback])`
+```txt
+async startStrapiJest([callback])
+```
 
 Starts a new Strapi instance before every test (with singleton pattern) and deletes the database and the end of every test. The Strapi instance will be globally available under the variable name `strapi`. The optional callback will be called at the end with the new Strapi instance.
 
@@ -110,4 +114,36 @@ describe("Global setup", () => {
     done();
   });
 });
+```
+
+### createStrapiSuperAdmin
+
+```txt
+async createStrapiSuperAdmin(strapiInstance [, email, password, username, firstname, lastname, blocked, isActive, displayLogs])
+```
+
+Creates a new Strapi Super Admin. A super admin is the user which can connect to the Strapi back-office, not the one the `users` table. Check the code for the default values.
+
+[Check createStrapiSuperAdmin's code for more details](https://github.com/Antoine-lb/strapi-plugin-testing/blob/main/src/createStrapiSuperAdmin.js)
+
+Examples:
+
+```javascript
+const {
+  startStrapiJest,
+  createStrapiSuperAdmin,
+} = require("strapi-plugin-testing");
+
+startStrapiJest();
+
+describe("Global setup", () => {
+  it("strapi is defined", async (done) => {
+    expect(strapi).toBeDefined();
+    await createStrapiSuperAdmin(strapi);
+    await createStrapiSuperAdmin(strapi, "second-admin@test.com", "password");
+    done();
+  });
+});
+
+require("./user/user");
 ```
