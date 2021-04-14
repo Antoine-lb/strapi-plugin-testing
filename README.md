@@ -253,10 +253,10 @@ The plugin is in Beta, any feedback is welcome.
 
 Possible functionalities for this plugin:
 
-- Automatically creat test files for the each api endpoint
+- [ ] Automatically creat test files for the each api endpoint
 
-- Test coverage configured for Strapi so only the custom code is accounted for
+- [ ] Test coverage configured for Strapi so only the custom code is accounted for
 
-- Pre-commit test run
+- [ ] Pre-commit test run
 
-- Easy setup for Github Actions
+- [ ] Easy setup for Github Actions
