@@ -18,7 +18,6 @@ const activatePrivileges = async (
         role,
       });
     permission.enabled = 1;
-    console.log('?', permission)
     await strapiInstance
       .query("permission", "users-permissions")
       .update({ id: permission.id }, permission);
