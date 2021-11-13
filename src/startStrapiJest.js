@@ -13,6 +13,8 @@ const startStrapiJest = async (callBack) => {
     const dbSettings = strapi.config.get(
       "database.connections.default.settings"
     );
+    
+    await strapi.connections.default.context.destroy(); // avoid jest open handle error
 
     //delete test database after all tests
     if (dbSettings && dbSettings.filename) {
