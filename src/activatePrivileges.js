@@ -8,8 +8,8 @@ const activatePrivileges = async (
     actions = ["count", "create", "delete", "find", "findone", "update"];
   }
 
-  actions.forEach(async (action) => {
-    permission = await strapiInstance
+  for (const action of actions) {
+    let permission = await strapiInstance
       .query("permission", "users-permissions")
       .findOne({
         type: "application",
@@ -21,8 +21,7 @@ const activatePrivileges = async (
     await strapiInstance
       .query("permission", "users-permissions")
       .update({ id: permission.id }, permission);
-    return 0;
-  });
+  }
 };
 
 module.exports = { activatePrivileges };
