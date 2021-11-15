@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-testing",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Out-of-the-box automated testing for Strapi",
   "strapi": {
     "name": "strapi-plugin-testing",
@@ -23,6 +23,10 @@
   },
   "license": "MIT",
   "main": "index.js",
+  "files": [
+    "src",
+    "assets"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
