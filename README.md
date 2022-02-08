@@ -89,7 +89,7 @@ function populateDatabase(strapiInstance) {
 
 // creates instance and populates data
 startStrapiJest(async (strapiInstance) => {
-  await mockApplicationData(strapiInstance); // optional parameter
+  await populateDatabase(strapiInstance); // optional parameter
 });
 
 describe("Global setup", () => {
