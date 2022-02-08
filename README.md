@@ -4,6 +4,15 @@ This community plugin automates all the steps in the [unit test page of the docu
 
 > Compatible with Strapi ^3.5.4
 
+
+## How to use
+
+`Jest` will execute all the files inside of `/__tests__/` that end in `.test.js`. Every `.test.js` file will be it's own instance of Strapi with it's own database, wich can add a lot of loading time (~10 seconds) before the tests start running.
+
+To avoid re-creating a new Strapi instance for every test, `.js` files can be manually added to a `.test.js` file with `require(...)`. In this case they will share the same instance and database.
+
+Warning: If multiple tests share the same instance, the order at which the tests run can have an impact on the result.
+
 ## Installation
 
 1. Install dependecy:
@@ -12,7 +21,7 @@ This community plugin automates all the steps in the [unit test page of the docu
 yarn add strapi-plugin-testing
 ```
 
-2. Run the project to generate all the files needed(check if `__tests__` folder has been created after running)
+2. Run the project to generate all the files needed (after running check if `__tests__` folder has been created properly)
 
 ```bash
 yarn develop
@@ -29,14 +38,6 @@ yarn develop
 ```bash
 yarn test
 ```
-
-## How to use
-
-`Jest` will execute all the files inside of `/__tests__/` that end in `.test.js`. Every `.test.js` file will be it's own instance of Strapi with it's own database, wich can add a lot of loading time (~10 seconds) before the tests start running.
-
-To avoid re-creating a new Strapi instance for every test, `.js` files can be manually added to a `.test.js` file with `require(...)`. In this case they will share the same instance and database.
-
-Warning: If multiple tests share the same instance, the order at which the tests run can have an impact on the result.
 
 ## File Structure
 
